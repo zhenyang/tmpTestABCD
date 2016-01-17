@@ -7,7 +7,18 @@
     <display-name>SD</display-name>
     <description>SD</description>
 
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.css</url-pattern>
+    </servlet-mapping>
+
     <!-- For web context -->
+    <servlet-mapping>
+        <servlet-name>sd-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
     <servlet>
         <servlet-name>sd-dispatcher</servlet-name>
         <servlet-class>
@@ -19,11 +30,6 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-
-    <servlet-mapping>
-        <servlet-name>sd-dispatcher</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
 
     <!-- For root context -->
     <listener>

@@ -1,6 +1,15 @@
+<!DOCTYPE html>
 <html>
-<head><title>Hello World</title></head>
+<head>
+    <meta charset="utf-8" />
+    <title>SD</title>
+    <script src="resources/javascripts/libs/react.js" charset="utf-8"></script>
+    <script src="resources/javascripts/libs/react-dom.js" charset="utf-8"></script>
+    <script src="resources/javascripts/libs/babel.js" charset="utf-8"></script>
+##    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+</head>
 <body>
-    Hello, ${userName}
+    <div id="app"></div>
+    <script type="text/babel" src="resources/javascripts/app.js"></script>
 </body>
 </html>

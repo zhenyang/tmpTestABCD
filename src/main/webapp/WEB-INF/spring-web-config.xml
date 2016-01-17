@@ -10,7 +10,6 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd">
 
-
     <context:component-scan base-package="sd.*" />
 
     <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
@@ -23,7 +22,7 @@
         <property name="suffix" value=".vm" />
     </bean>
 
-    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:resources mapping="/resources/**" location="/resources" />
 
     <mvc:annotation-driven />
 
