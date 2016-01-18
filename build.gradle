@@ -5,16 +5,50 @@ apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'idea'
 apply plugin: 'jetty'
+apply plugin: 'jacoco'
 
 sourceCompatibility = 1.5
 
 repositories {
-    mavenCentral()
+    /* mavenCentral() */
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
-    compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
-    compile 'org.springframework:spring-context-support:4.1.6.RELEASE'
-    compile 'org.apache.velocity:velocity:1.7'
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile name: 'spring-aop-4.1.6.RELEASE'
+    compile name: 'spring-beans-4.1.6.RELEASE'
+    compile name: 'spring-context-4.1.6.RELEASE'
+    compile name: 'spring-context-support-4.1.6.RELEASE'
+    compile name: 'spring-core-4.1.6.RELEASE'
+    compile name: 'spring-expression-4.1.6.RELEASE'
+    compile name: 'spring-web-4.1.6.RELEASE'
+    compile name: 'spring-webmvc-4.1.6.RELEASE'
+
+    compile name: 'velocity-1.7'
+    compile name: 'aopalliance-1.0'
+    compile name: 'commons-collections-3.2.1'
+    compile name: 'commons-lang-2.4'
+    compile name: 'commons-logging-1.2'
+    testCompile name: 'junit-4.11'
+    testCompile name: 'hamcrest-core-1.3'
+
+    jacocoAnt files('plugins/asm-debug-all-5.0.1.jar')
+    jacocoAnt files('plugins/org.jacoco.agent-0.7.1.201405082137.jar')
+    jacocoAnt files('plugins/org.jacoco.ant-0.7.1.201405082137.jar')
+    jacocoAnt files('plugins/org.jacoco.core-0.7.1.201405082137.jar')
+    jacocoAnt files('plugins/org.jacoco.report-0.7.1.201405082137.jar')
+
+    jacocoAgent files('plugins/org.jacoco.agent-0.7.1.201405082137.jar')
+}
+
+task copyToLib(type: Copy) {
+    into 'libs'
+    from configurations.compile
+    from configurations.runtime
+    from configurations.testCompile
+    from configurations.testRuntime
+    from configurations.jacocoAgent
+    from configurations.jacocoAnt
 }
