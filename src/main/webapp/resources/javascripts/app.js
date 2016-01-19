@@ -72,14 +72,14 @@ var TaskPageView = React.createClass({
         var self = this;
         setTimeout(function() {
             self.setState({tasks: tasks});
-        }, 5000);
+        }, 2000);
     },
     handleNewTaskSubmit: function(task) {
         tasks.push(task);
         var self = this;
         setTimeout(function() {
             self.setState({tasks: tasks});
-        }, 5000);
+        }, 2000);
     },
     render: function() {
         return (

@@ -2,14 +2,15 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>SD</title>
+    <title>Task</title>
     <script src="resources/javascripts/libs/react.js" charset="utf-8"></script>
     <script src="resources/javascripts/libs/react-dom.js" charset="utf-8"></script>
     <script src="resources/javascripts/libs/babel.js" charset="utf-8"></script>
 </head>
 <body>
-    <input type="button" value="New Task" />
-    <div id="app"></div>
-    <script type="text/babel" src="resources/javascripts/app.js"></script>
+    <h1>Our Application</h1>
+    <div>
+        $screen_content
+    </div>
 </body>
 </html>

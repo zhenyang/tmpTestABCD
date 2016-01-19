@@ -11,6 +11,6 @@ public class IndexController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome(Model model) {
         model.addAttribute("userName", "Feng Zhichao");
-        return "index";
+        return "index/welcome";
     }
 }

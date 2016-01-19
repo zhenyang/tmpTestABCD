@@ -27,6 +27,7 @@ dependencies {
     compile name: 'spring-webmvc-4.1.6.RELEASE'
 
     compile name: 'velocity-1.7'
+    compile name: 'velocity-tools-2.0'
     compile name: 'aopalliance-1.0'
     compile name: 'commons-collections-3.2.1'
     compile name: 'commons-lang-2.4'
