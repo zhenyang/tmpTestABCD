@@ -1,39 +1,39 @@
-var projects = [
+var tasks = [
   {id: 1, name: "Xi'an Telecom", status: "Pending"},
   {id: 2, name: "Beijing Unicom", status: "Processing"}
 ];
 
-var ProjectView = React.createClass({
+var TaskView = React.createClass({
     render: function() {
         return (
             <div>
                 <div>
-                    {this.props.project.name}
+                    {this.props.task.name}
                 </div>
                 <div>
-                    {this.props.project.status}
+                    {this.props.task.status}
                 </div>
             </div>
         )
     }
 });
 
-var ProjectListView = React.createClass({
+var TaskListView = React.createClass({
     render: function() {
-        var renderProjects = this.props.projects.map(function(project) {
+        var renderTasks = this.props.tasks.map(function(task) {
             return (
-                <ProjectView project={project} key={project.id} />
+                <TaskView task={task} key={task.id} />
             )
         });
         return (
             <div>
-                {renderProjects}
+                {renderTasks}
             </div>
         )
     }
 });
 
-var ProjectFormView = React.createClass({
+var TaskFormView = React.createClass({
     getInitialState: function() {
         return {name: '', status: ''};
     },
@@ -51,48 +51,48 @@ var ProjectFormView = React.createClass({
             return;
         }
         this.setState({name: '', status: ''});
-        this.props.onNewProjectSubmit({name: name, status: status});
+        this.props.onNewTaskSubmit({name: name, status: status});
     },
     render: function() {
         return(
             <form onSubmit={this.handleFormSubmit}>
-                <input type="text" placeholder="project name" value={this.state.name} onChange={this.handleNameChanged} />
-                <input type="text" placeholder="project status" value={this.state.status} onChange={this.handleStatusChanged} />
+                <input type="text" placeholder="task name" value={this.state.name} onChange={this.handleNameChanged} />
+                <input type="text" placeholder="task status" value={this.state.status} onChange={this.handleStatusChanged} />
                 <input type="submit" value="Submit" />
             </form>
         )
     }
 });
 
-var ProjectPageView = React.createClass({
+var TaskPageView = React.createClass({
     getInitialState: function() {
-        return {projects: []};
+        return {tasks: []};
     },
     componentDidMount: function() {
         var self = this;
         setTimeout(function() {
-            self.setState({projects: projects});
+            self.setState({tasks: tasks});
         }, 5000);
     },
-    handleNewProjectSubmit: function(project) {
-        projects.push(project);
+    handleNewTaskSubmit: function(task) {
+        tasks.push(task);
         var self = this;
         setTimeout(function() {
-            self.setState({projects: projects});
+            self.setState({tasks: tasks});
         }, 5000);
     },
     render: function() {
         return (
             <div>
-                <h1>Projects</h1>
-                <ProjectListView projects={this.state.projects}/>
-                <ProjectFormView onNewProjectSubmit={this.handleNewProjectSubmit} />
+                <h1>Tasks</h1>
+                <TaskListView tasks={this.state.tasks}/>
+                <TaskFormView onNewTaskSubmit={this.handleNewTaskSubmit} />
             </div>
         )
     }
 });
 
 ReactDOM.render(
-    <ProjectPageView projects={projects} />,
+    <TaskPageView tasks={tasks} />,
     document.getElementById('app')
 );

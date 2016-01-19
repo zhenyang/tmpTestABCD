@@ -1,11 +1,11 @@
 package sd.models;
 
-public class Project {
+public class Task {
     private int id;
     private String name;
     private String status;
 
-    public Project(int id, String name, String status) {
+    public Task(int id, String name, String status) {
         this.id = id;
         this.name = name;
         this.status = status;

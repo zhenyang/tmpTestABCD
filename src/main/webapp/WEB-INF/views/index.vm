@@ -6,9 +6,9 @@
     <script src="resources/javascripts/libs/react.js" charset="utf-8"></script>
     <script src="resources/javascripts/libs/react-dom.js" charset="utf-8"></script>
     <script src="resources/javascripts/libs/babel.js" charset="utf-8"></script>
-##    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
 </head>
 <body>
+    <input type="button" value="New Task" />
     <div id="app"></div>
     <script type="text/babel" src="resources/javascripts/app.js"></script>
 </body>

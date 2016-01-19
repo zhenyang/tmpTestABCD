@@ -4,22 +4,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import sd.models.Project;
+import sd.models.Task;
 
 import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/projects")
-public class ProjectController {
+@RequestMapping(value = "/tasks")
+public class TaskController {
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Project> index() {
-        return Arrays.asList(new Project(12, "Test Proj", "Pending"));
+    public List<Task> index() {
+        return Arrays.asList(new Task(12, "Test Task", "Pending"));
     }
 
     @RequestMapping(value = "/{id}")
-    public Project get(@PathVariable int id) {
-        return new Project(12, "Test Proj", "Pending");
+    public Task get(@PathVariable int id) {
+        return new Task(12, "Test Task", "Pending");
     }
+
 }
