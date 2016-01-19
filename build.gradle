@@ -10,38 +10,62 @@ apply plugin: 'jacoco'
 sourceCompatibility = 1.5
 
 repositories {
-    /* mavenCentral() */
-    flatDir {
-        dirs 'libs'
-    }
+//    flatDir {
+//        dirs 'libs'
+//    }
+    mavenCentral()
 }
 
 dependencies {
-    compile name: 'spring-aop-4.1.6.RELEASE'
-    compile name: 'spring-beans-4.1.6.RELEASE'
-    compile name: 'spring-context-4.1.6.RELEASE'
-    compile name: 'spring-context-support-4.1.6.RELEASE'
-    compile name: 'spring-core-4.1.6.RELEASE'
-    compile name: 'spring-expression-4.1.6.RELEASE'
-    compile name: 'spring-web-4.1.6.RELEASE'
-    compile name: 'spring-webmvc-4.1.6.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.1.6.RELEASE'
+    compile 'org.springframework:spring-orm:4.1.6.RELEASE'
+    compile 'org.springframework:spring-context-support:4.1.6.RELEASE'
+    compile 'org.apache.velocity:velocity:1.7'
+    compile 'org.apache.velocity:velocity-tools:2.0'
 
-    compile name: 'velocity-1.7'
-    compile name: 'velocity-tools-2.0'
-    compile name: 'aopalliance-1.0'
-    compile name: 'commons-collections-3.2.1'
-    compile name: 'commons-lang-2.4'
-    compile name: 'commons-logging-1.2'
-    testCompile name: 'junit-4.11'
-    testCompile name: 'hamcrest-core-1.3'
+    compile 'org.hibernate:hibernate-core:4.3.11.Final'
+    compile 'org.postgresql:postgresql:9.4.1207.jre7'
 
-    jacocoAnt files('plugins/asm-debug-all-5.0.1.jar')
-    jacocoAnt files('plugins/org.jacoco.agent-0.7.1.201405082137.jar')
-    jacocoAnt files('plugins/org.jacoco.ant-0.7.1.201405082137.jar')
-    jacocoAnt files('plugins/org.jacoco.core-0.7.1.201405082137.jar')
-    jacocoAnt files('plugins/org.jacoco.report-0.7.1.201405082137.jar')
+    testCompile 'junit:junit:4.11'
 
-    jacocoAgent files('plugins/org.jacoco.agent-0.7.1.201405082137.jar')
+//    compile name: 'spring-aop-4.1.6.RELEASE'
+//    compile name: 'spring-beans-4.1.6.RELEASE'
+//    compile name: 'spring-context-4.1.6.RELEASE'
+//    compile name: 'spring-context-support-4.1.6.RELEASE'
+//    compile name: 'spring-core-4.1.6.RELEASE'
+//    compile name: 'spring-expression-4.1.6.RELEASE'
+//    compile name: 'spring-web-4.1.6.RELEASE'
+//    compile name: 'spring-webmvc-4.1.6.RELEASE'
+//    compile name: 'velocity-1.7'
+//    compile name: 'velocity-tools-2.0'
+//    compile name: 'aopalliance-1.0'
+//    compile name: 'commons-collections-3.2.1'
+//    compile name: 'commons-lang-2.4'
+//    compile name: 'commons-logging-1.2'
+//
+//    compile name: 'antlr-2.7.7'
+//    compile name: 'asm-debug-all-5.0.1'
+//    compile name: 'dom4j-1.6.1'
+//    compile name: 'hibernate-commons-annotations-4.0.5.Final'
+//    compile name: 'hibernate-core-4.3.11.Final'
+//    compile name: 'hibernate-jpa-2.1-api-1.0.0.Final'
+//    compile name: 'jandex-1.1.0.Final'
+//    compile name: 'javassist-3.18.1-GA'
+//    compile name: 'jboss-logging-3.1.3.GA'
+//    compile name: 'jboss-logging-annotations-1.2.0.Beta1'
+//    compile name: 'jboss-transaction-api_1.2_spec-1.0.0.Final'
+//    compile name: 'xml-apis-1.0.b2'
+//
+//    testCompile name: 'junit-4.11'
+//    testCompile name: 'hamcrest-core-1.3'
+//
+//    jacocoAnt files('plugins/asm-debug-all-5.0.1.jar')
+//    jacocoAnt files('plugins/org.jacoco.agent-0.7.1.201405082137.jar')
+//    jacocoAnt files('plugins/org.jacoco.ant-0.7.1.201405082137.jar')
+//    jacocoAnt files('plugins/org.jacoco.core-0.7.1.201405082137.jar')
+//    jacocoAnt files('plugins/org.jacoco.report-0.7.1.201405082137.jar')
+//
+//    jacocoAgent files('plugins/org.jacoco.agent-0.7.1.201405082137.jar')
 }
 
 task copyToLib(type: Copy) {
