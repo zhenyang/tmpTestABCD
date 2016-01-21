@@ -1,0 +1,68 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'jetty'
+apply plugin: 'war'
+apply plugin: 'osgi'
+
+//buildscript {
+//    repositories {
+//        jcenter()
+//    }
+//    dependencies {
+//        classpath "com.athaydes.gradle.osgi:osgi-run-core:1.2"
+//    }
+//}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.osgi:org.osgi.core:4.3.1'
+    compile 'log4j:log4j:1.2.17'
+    compile 'org.apache.struts:struts2-core:2.3.16'
+    compile 'javax.servlet:javax.servlet-api:3.1.0'
+    compile 'javax.servlet:jsp-api:2.0'
+}
+
+//runOsgi {
+//    bundles += subprojects
+//}
+
+//jar {
+//    manifest {
+//        instruction 'Private-Package','com.javacodegeeks.gradle.osgi'
+//        instruction 'Bundle-Vendor', 'JavaCodeGeeks'
+//        instruction 'Bundle-Description', 'First OSGi Bundle Created By Gradle JCG Tutorial'
+//        instruction 'Bundle-ManifestVersion', '2'
+//        instruction 'Bundle-Version', '1.0.0'
+//        instruction 'Bundle-Name', 'GradleOSGiProjectIntegration'
+//        instruction 'Bundle-SymbolicName', 'GradleOSGiProjectIntegration'
+//        instruction 'Export-Package', 'com.javacodegeeks.gradle.osgi;version="1.0.0";uses:="org.osgi.framework"'
+//    }
+//}
+
+war {
+    manifest = osgiManifest {
+        println sourceSets.main.output.classesDir
+
+        classesDir = sourceSets.main.output.classesDir
+        classpath = configurations.runtime
+        instruction 'Bundle-Activator', 'com.chaojiwudi.test.activator.SdActivator'
+        instruction 'Web-ContextPath', '/WAB_NEP-SD'
+        instruction 'Import-Package', '!org.apache.log4j,javax.servlet,org.xml.sax,org.w3c.dom,org.xml.sax.helpers,javax.xml.parsers,javax.xml.transform,javax.xml.transform.sax,javax.xml.transform.dom,*.*'
+        instruction 'Bundle-ClassPath', getBundleClassPath()
+    }
+}
+
+def getBundleClassPath() {
+    def dependenciesClassPath = configurations.compile.inject([]) { result, dependenciJarFile ->
+        if (dependenciJarFile.name != "struts2-core-2.3.16.jar") {
+            println "Adding ${dependenciJarFile.name} into bundle class path"
+            result << "/WEB-INF/lib/${dependenciJarFile.name}"
+        }
+        result
+    }.join(', ')
+    println "Adding '., /WEB-INF/classes' into bundle class path"
+    return '., /WEB-INF/classes, ' + dependenciesClassPath
+}
