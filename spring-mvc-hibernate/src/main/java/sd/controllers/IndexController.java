@@ -13,4 +13,9 @@ public class IndexController {
         model.addAttribute("userName", "Feng Zhichao");
         return "index/welcome";
     }
+
+    @RequestMapping(value = "/learn", method = RequestMethod.GET)
+    public String learn() {
+        return "index/learn";
+    }
 }

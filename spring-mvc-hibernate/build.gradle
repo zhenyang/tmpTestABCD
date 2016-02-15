@@ -7,7 +7,8 @@ apply plugin: 'idea'
 apply plugin: 'jetty'
 apply plugin: 'jacoco'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
 //    flatDir {
@@ -25,6 +26,8 @@ dependencies {
 
     compile 'org.hibernate:hibernate-core:4.3.11.Final'
     compile 'org.postgresql:postgresql:9.4.1207.jre7'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.0'
+    compile 'org.springframework.data:spring-data-mongodb:1.8.2.RELEASE'
 
     testCompile 'junit:junit:4.11'
 
@@ -68,6 +71,8 @@ dependencies {
 //    jacocoAgent files('plugins/org.jacoco.agent-0.7.1.201405082137.jar')
 }
 
+defaultTasks 'clean', 'build'
+
 task copyToLib(type: Copy) {
     into 'libs'
     from configurations.compile
@@ -82,3 +87,36 @@ jettyRun {
     reload = 'automatic'
     scanIntervalSeconds = 1
 }
+
+[jettyRun, jettyRunWar]*.with {
+    //other configs
+    webDefaultXml = file("plugins/jetty-webdefault.xml")
+}
+
+//task jettyRunDebug(dependsOn: 'jettyRun') {
+//    jvmArgs '-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005'
+//
+//}
+
+//tasks.withType(jettyRun) {
+//        jvmArgs '-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005'
+//
+//}
+
+
+task hello {
+    ext.a = 'blabla'
+}
+
+hello << {
+    println 'test hello'
+}
+
+hello << {
+    println "thanks for calling task $hello.name"
+}
+
+task hello1 << {
+    println "hello and $hello.a"
+}
+
