@@ -26,7 +26,7 @@ dependencies {
 
     compile 'org.hibernate:hibernate-core:4.3.11.Final'
     compile 'org.postgresql:postgresql:9.4.1207.jre7'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.7.1-1'
     compile 'org.springframework.data:spring-data-mongodb:1.8.2.RELEASE'
 
     testCompile 'junit:junit:4.11'
